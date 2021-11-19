@@ -7,21 +7,24 @@ const admin = require("firebase-admin");
 const db = admin.firestore();
 
 // post new Patient
+
 router.post("/api/patients", async (request, response) => {
   // for the errors
   try {
-    await db
-      .collection("patients")
-      .doc("/" + request.body.id + "/")
-      .create({
-        name: request.body.name,
-        birthDate: request.body.birthDate,
-        address: request.body.address,
-        phone: request.body.phone,
-        checkin: request.body.checkin,
-        departure: request.body.departure,
-      });
-    return response.status(200).send(`message: "Patient created successfully`);
+    await db.collection("patients").doc(/*"/" + request.body.id + "/*/).create({
+      names: request.body.names,
+      lastname: request.body.lastname,
+      birthdate: request.body.birthdate,
+      gender: request.body.gender,
+      phonenumber: request.body.phonenumber,
+      address: request.body.address,
+      minor: request.body.minor,
+      guardianfullname: request.body.guardianfullname,
+      guardianphonenumber: request.body.guardianphonenumber,
+      guardianaddress: request.body.guardianaddress,
+      ailments: request.body.ailments,
+    });
+    return response.status(200).send(`message: patient created successfully`);
   } catch {
     console.log(error);
     return response.status(500).send(error);
@@ -78,11 +81,21 @@ router.put("/api/patients/:patient_id", async (request, response) => {
   try {
     const document = db.collection("patients").doc(request.params.patient_id);
     await document.update({
-      name: request.body.name,
+      names: request.body.names,
+      lastname: request.body.lastname,
+      birthdate: request.body.birthdate,
+      gender: request.body.gender,
+      phonenumber: request.body.phonenumber,
+      address: request.body.address,
+      minor: request.body.minor,
+      guardianfullname: request.body.guardianfullname,
+      guardianphonenumber: request.body.guardianphonenumber,
+      guardianaddress: request.body.guardianaddress,
+      ailments: request.body.ailments,
     });
     return response.status(200).send(`message: Patient updated successfully`);
   } catch (error) {
-    return response.status(500).json();
+    return response.status(500).json(error);
   }
 });
 
