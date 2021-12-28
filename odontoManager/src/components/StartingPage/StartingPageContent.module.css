@@ -1,0 +1,16 @@
+.starting h1 {
+  /* clamp */
+  text-align: center;
+  color: #ffff;
+  text-shadow: 1px 2px 3px black;
+  margin-top: 15rem;
+  font-size: clamp(2rem, 5vw, 5rem);
+}
+
+body {
+  background-color: #8c52ff;
+  background-image: linear-gradient(43deg, #8c52ff 0%, #00c2cb 50%, #d9d9d9 93%);
+  height: 976px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
